@@ -10,6 +10,8 @@ const FreeShippingBar = styled.section`
     height: 80px;
     margin: 0 0 20px;
     place-items: center;
+    position: sticky;
+    top: 0;
     width: 100%;
 
     p {
