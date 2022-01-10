@@ -4,12 +4,14 @@ import FreeShipping from './components/FreeShipping/FreeShipping';
 
 import QuoteProvider from './contexts/QuoteContext';
 
-function App() {
+const App = () => {
     return (
-        <QuoteProvider className="App">
-            <FreeShipping totalToApplyFreeShipping={150}/>
-            <ProductList />
-        </QuoteProvider>
+        <div className="App">
+            <QuoteProvider>
+                <FreeShipping totalToApplyFreeShipping={150.00}/>
+                <ProductList />
+            </QuoteProvider>
+        </div>
     );
 }
 

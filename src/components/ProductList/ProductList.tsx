@@ -9,9 +9,16 @@ const StyledProductList = styled.section`
     grid-template-columns: repeat(4, 1fr);
 `;
 
-function ProductList() {
+interface ProductInterface {
+    id: number,
+    image: string,
+    title: string,
+    price: number
+}
+
+const ProductList = () => {
     const [isLoading, setLoading] = useState(true);
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState<ProductInterface[]>([])
     
     useEffect(() => {
         fetch('https://fakestoreapi.com/products?limit=5')
@@ -31,7 +38,7 @@ function ProductList() {
 
     return (
         <StyledProductList>
-            {products.map((product) => {
+            {products && products.map((product) => {
                 return <Product key={product.id} product={product} />
             })}
         </StyledProductList>

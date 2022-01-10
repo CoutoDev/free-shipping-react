@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components'
 
-function ProgressBar(props) {
-    const { amount, goal } = props
+interface ProgressBarProps {
+    amount: number;
+    goal: number;
+}
+
+
+const ProgressBar = ({ amount, goal }:ProgressBarProps ) => {
     const goalPercentage = (100 * amount)/goal
 
     const ProgressBarContainer = styled.section`
@@ -37,7 +42,7 @@ function ProgressBar(props) {
         <ProgressBarContainer>
 
             {goalPercentage <= 100 
-                ? <p>Faltam R$ {parseFloat(goal - amount).toFixed(2)} para Frete Grátis!</p>
+                ? <p>Faltam R$ {(goal - amount).toFixed(2)} para Frete Grátis!</p>
                 : <p>Você agora tem direito a Frete Grátis!</p>
             }
             <Bar>

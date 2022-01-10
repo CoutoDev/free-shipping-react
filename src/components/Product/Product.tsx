@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { MouseEvent, useContext } from 'react';
 import styled from 'styled-components';
 import { QuoteContext } from '../../contexts/QuoteContext'
 
@@ -24,9 +24,21 @@ const AddToCart = styled.button`
     padding: 10px 15px;
 `;
 
-function Product(props) {
-    const { product } = props
-    const quoteContext = useContext(QuoteContext)
+interface ProductProps {
+    product: {
+        image: string,
+        title: string,
+        price: number
+    };
+}
+
+const Product = ({ product }: ProductProps) => {
+    const { dispatch } = useContext(QuoteContext)
+
+    const onClick = (e: MouseEvent) => {
+        e.preventDefault()
+        dispatch({type: "ADD_TO_CART", payload: product.price})
+    }
 
     return (
         <ProductCard>
@@ -39,7 +51,7 @@ function Product(props) {
             <span className="product-price">
                 R$ {product.price}
             </span>
-            <AddToCart type="submit" onClick={() => quoteContext.updateQuoteTotals(product.price)}>
+            <AddToCart type="submit" onClick={onClick}>
                 Adicionar ao Carrinho
             </AddToCart>
         </ProductCard>
