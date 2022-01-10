@@ -9,7 +9,7 @@ const StyledProductList = styled.section`
     grid-template-columns: repeat(4, 1fr);
 `;
 
-function ProductList(props) {
+function ProductList() {
     const [isLoading, setLoading] = useState(true);
     const [products, setProducts] = useState([])
     
@@ -32,7 +32,7 @@ function ProductList(props) {
     return (
         <StyledProductList>
             {products.map((product) => {
-                return <Product key={product.id} product={product} updateQuoteTotals={props.updateQuoteTotals}/>
+                return <Product key={product.id} product={product} />
             })}
         </StyledProductList>
     )

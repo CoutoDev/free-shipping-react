@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { QuoteContext } from '../../contexts/QuoteContext'
 import ProgressBar from '../ProgressBar/ProgressBar';
 
 const FreeShippingBar = styled.section`
@@ -21,14 +22,15 @@ const FreeShippingBar = styled.section`
 
 function FreeShipping(props) {
     const totalToApplyFreeShipping = props.totalToApplyFreeShipping
+    const quoteContext = useContext(QuoteContext)
 
     return (
         <FreeShippingBar>
             <div>
                 <p>Nas compras acima de R$ {totalToApplyFreeShipping}, ganhe <em>Frete Gratis</em></p>
-                <p>Total Atual: R$ {parseFloat(props.quoteTotals).toFixed(2)}</p>
+                <p>Total Atual: R$ {quoteContext.quoteTotals ? parseFloat(quoteContext.quoteTotals).toFixed(2) : '0.00'}</p>
             </div>
-            <ProgressBar amount={props.quoteTotals} goal={totalToApplyFreeShipping}/>
+            <ProgressBar amount={quoteContext.quoteTotals} goal={totalToApplyFreeShipping}/>
         </FreeShippingBar>
     )
 }

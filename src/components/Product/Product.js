@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { QuoteContext } from '../../contexts/QuoteContext'
 
 const ProductCard = styled.section`
     align-items: center;
@@ -24,7 +25,8 @@ const AddToCart = styled.button`
 `;
 
 function Product(props) {
-    const { product, updateQuoteTotals } = props
+    const { product } = props
+    const quoteContext = useContext(QuoteContext)
 
     return (
         <ProductCard>
@@ -37,7 +39,7 @@ function Product(props) {
             <span className="product-price">
                 R$ {product.price}
             </span>
-            <AddToCart type="submit" onClick={() => updateQuoteTotals(product.price)}>
+            <AddToCart type="submit" onClick={() => quoteContext.updateQuoteTotals(product.price)}>
                 Adicionar ao Carrinho
             </AddToCart>
         </ProductCard>

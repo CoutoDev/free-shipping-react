@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ProductList from './components/ProductList/ProductList';
 import FreeShipping from './components/FreeShipping/FreeShipping';
 
+import QuoteProvider from './contexts/QuoteContext';
+
 function App() {
-    const [quoteTotals, setQuoteTotals] = useState(0)
-
-    const updateQuoteTotals = (productPrice) => {
-        setQuoteTotals(quoteTotals + productPrice)
-    }
-
     return (
-        <div className="App">
-            <FreeShipping totalToApplyFreeShipping={150} quoteTotals={quoteTotals}/>
-            <ProductList updateQuoteTotals={updateQuoteTotals}/>
-        </div>
+        <QuoteProvider className="App">
+            <FreeShipping totalToApplyFreeShipping={150}/>
+            <ProductList />
+        </QuoteProvider>
     );
 }
 
